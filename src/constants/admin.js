@@ -1,0 +1,5 @@
+const CTO_BIRTHDAY = '2020-12-24T00:00:00';
+
+export {
+    CTO_BIRTHDAY
+};

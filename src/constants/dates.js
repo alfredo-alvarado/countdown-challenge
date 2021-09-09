@@ -1,0 +1,15 @@
+const DAYS_IN_YEAR = 365;
+const DAYS_IN_LEAP_YEAR = 366;
+const MILISECS_IN_SEC = 1000;
+const SECS_IN_MIN = 60;
+const MINS_IN_HOUR = 60;
+const HOURS_IN_DAY = 24;
+
+export {
+    DAYS_IN_YEAR,
+    DAYS_IN_LEAP_YEAR,
+    MILISECS_IN_SEC,
+    SECS_IN_MIN,
+    MINS_IN_HOUR,
+    HOURS_IN_DAY
+}
