@@ -13,7 +13,7 @@ The below component was designed to count down the days until our CTO's birthday
 #### What would happen to the current code if the date were changed, the page layout was changed or the format was changed?
 
 * The styles are too formal for a birthday celebration for that reason I changed them to a more relaxed color like blue instead of black.
-* Nothing is happening when the countdown comes to zero then is still pending doing something, I am planning doing that tomorrow, maybe a modal is enough.
+* A Birthday Card Modal was added obly for illustrative purposes when the countdown ends.
 
 #### Does the current implementation follow best practices for HTML, CSS, JS and React?
 

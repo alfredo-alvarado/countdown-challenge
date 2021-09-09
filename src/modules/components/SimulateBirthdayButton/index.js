@@ -1,0 +1,1 @@
+export { default as SimulateBirthdayButton } from './SimulateBirthdayButton';

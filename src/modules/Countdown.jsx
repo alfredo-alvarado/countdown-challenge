@@ -1,8 +1,14 @@
-import { useEffect, useState, useCallback} from 'react';
-import moment from 'moment';
-import TimeChildList from './components/TimeChildList/TimeChildList';
+import { useEffect, useState, useCallback, memo } from 'react';
+import moment from 'moment-timezone';
+import { 
+    TimeChildList, 
+    HappyBirthdayModal, 
+    Loader, 
+    SimulateBirthdayButton 
+} from './components';
 import { getTimeLeft, getStandardDateForBirthday } from '../helpers/countdown';
 import { CTO_BIRTHDAY } from '../constants/admin';
+import classes from './Countdown.module.css';
 
 export const initialState = {
     Day: 0,
@@ -17,6 +23,9 @@ const Countdown = () => {
     const endDate = moment(endDateStr);
 
     const [startDate, setStartDate] = useState(moment());
+    const [modalIsOpen, setOpenModal] = useState(false);
+    const [clickedBtn, setClickedBtn] = useState(false);
+    const [loader, setLoader] = useState(true);
     const [formatData, setFormatData] = useState({
         Day: 0,
         Hour: 0,
@@ -37,7 +46,17 @@ const Countdown = () => {
         []
     );
 
-    const handleStartDate = date => setStartDate();
+    const handleOpenButton = () => setClickedBtn(true);
+
+    const handleCloseButton = () => setClickedBtn(false);
+
+    const handleOpenModal = () => setOpenModal(true);
+
+    const handleCloseModal = () => setOpenModal(false);
+
+    const handleCloseLoader = () => setLoader(false);
+
+    const handleStartDate = date => setStartDate(date);
 
     const handleDecreaseTimer = useCallback(
         () => {
@@ -50,18 +69,46 @@ const Countdown = () => {
         },
         [endDate, handleFormatData, startDate]
     );
+    
+    const onRequestClose = () => {
+        handleCloseModal();
+        handleCloseButton();
+    };
 
     useEffect(() => {
         setTimeout(() => {
             handleDecreaseTimer();
+            handleCloseLoader();
         }, 1000);
     }, [handleDecreaseTimer]);
 
+    useEffect(() => {
+        if ((formatData.Day === 0 && !Loader) || clickedBtn) {
+            handleOpenModal();
+        }
+    }, [formatData, clickedBtn]);
+
+    if (loader) {
+        return (
+            <div className={classes.Countdown}>
+                <Loader />
+            </div>
+        );
+    }
+
     return (
         <div>
+            <HappyBirthdayModal 
+                modalIsOpen={modalIsOpen}
+                handleCloseModal={onRequestClose}
+                handleOpenModal={handleOpenModal}
+            />
             <TimeChildList formatData={formatData} />
+            <div>
+                <SimulateBirthdayButton handleClickBirthdayBtn={handleOpenButton} />
+            </div>
         </div>
     );
 };
 
-export default Countdown;
+export default memo(Countdown);

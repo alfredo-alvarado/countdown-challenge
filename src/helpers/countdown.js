@@ -1,4 +1,5 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
+import { CTO_TIMEZONE } from '../constants';
 
 const getStandardDateForBirthday = dateStr => {
     const currYear = moment(new Date()).format('YYYY');
@@ -8,7 +9,7 @@ const getStandardDateForBirthday = dateStr => {
 
 const getTimeLeft = (endDate, startDate) => {
 
-    let duration, newEndDate;
+    let duration, newEndDate, newStartDate;
 
     if (endDate > startDate) {
         newEndDate = endDate;
@@ -17,12 +18,15 @@ const getTimeLeft = (endDate, startDate) => {
         newEndDate = endDate.add(1, 'year');
     }
 
+    newEndDate = moment.tz(newEndDate, CTO_TIMEZONE);
+    newStartDate = moment.tz(startDate, CTO_TIMEZONE);
+
     duration = moment.duration(
-        newEndDate.diff(startDate)
+        newEndDate.diff(newStartDate)
     ).asMilliseconds();
 
-    const durationFormat = moment.utc(
-        duration
+    const durationFormat = moment.tz(
+        duration, CTO_TIMEZONE
     ).format('DDD-HH-mm-ss').split('-');
 
     return {
