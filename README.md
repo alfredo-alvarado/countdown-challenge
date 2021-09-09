@@ -1,19 +1,41 @@
 # Countdown
 
 ## Improved countdown
+
 The below component was designed to count down the days until our CTO's birthday, but it still needs some work. How can you make the implementation better?
 
 **Do a critique:** The current implementation isn't perfect. How could it be improved?
 
-* Pick an area of improvement to implement.
-* What would happen to the current code if the date were changed, the page layout was changed or the format was changed?
-* Does the current implementation follow best practices for HTML, CSS, JS and React?
+----
 
-**Spice it up:** Let's be honest, this countdown could be a whole lot more exciting.
+### Pick an area of improvement to implement.
 
-* What could you do to create a greater sense of urgency?
-* How would you make this countdown more aesthetically pleasing?
-* Trust your design instincts, and explain how your design choices impact the user experience
+#### What would happen to the current code if the date were changed, the page layout was changed or the format was changed?
+
+* The styles are too formal for a birthday celebration for that reason I changed them to a more relaxed color like blue instead of black.
+* Nothing is happening when the countdown comes to zero then is still pending doing something, I am planning doing that tomorrow, maybe a modal is enough.
+
+#### Does the current implementation follow best practices for HTML, CSS, JS and React?
+
+* No, all was wrapped together, then it was pretty hard using memo, callbacks, or pure components to avoid unnecesary rendering.
+* Also, separating stateless and stateful components was done incorrectly.
+
+#### Let's be honest, this countdown could be a whole lot more exciting.
+
+* Yes, adding back-end connections to send e-mails to remeber people about CTO bithday would be a good idea.
+
+#### What could you do to create a greater sense of urgency?
+
+* All was crashed, making working all properly was the first priority.
+
+#### How would you make this countdown more aesthetically pleasing?
+
+* Adding some styles aligned to the company or CTO's image.
+* Adding icons alusive to the birthay or company. Indeed I changed the defauld React icons by some custom ones, they can be accesible cleaning the web browser cache. 
+
+#### Trust your design instincts, and explain how your design choices impact the user experience
+
+* For more details about this please see the anotations in the first commit.
 
 ## Getting Started with Create React App
 
